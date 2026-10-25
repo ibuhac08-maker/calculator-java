@@ -1,0 +1,27 @@
+======================================================================
+IZVJEŠTAJ O TESTIRANJU KALKULATORA (TEST-RESULTS)
+======================================================================
+
+Metoda testiranja: Testiranje crne kutije (Black Box Testing) / Sistemsko testiranje
+
+Uočeni propusti, nedostatci i zapažanja:
+
+1. Dijeljenje s nulom (Pucanje aplikacije)
+   - Unos: "5/0"
+   - Problem: Program ne obrađuje dijeljenje s nulom na siguran način, što dovodi do rušenja aplikacije (ArithmeticException ili vraćanja "Infinity" umjesto jasne poruke korisniku).
+
+2. Unos neispravnih znakova (Slova i specijalni znakovi)
+   - Unos: "2+abc" ili "5@3"
+   - Problem: Sustav pokušava parsirati slova kao brojeve ili operatore, što uzrokuje pad programa (NumberFormatException) umjesto ispisa poruke "Neispravan unos".
+
+3. Višestruki uzastopni operatori (Sintaksna greška)
+   - Unos: "5++3" ili "10/*2"
+   - Problem: Kalkulator ne prepoznaje uzastopne operatore kao sintaksnu grešku prije pokretanja izračuna, što dovodi do neočekivanog ponašanja ili pada sustava.
+
+4. Neuparene zagrade
+   - Unos: "(5+3" ili "5+3)"
+   - Problem: Ako korisnik zaboravi zatvoriti ili otvoriti zagradu, algoritam ne prijavljuje grešku strukture izraza, već se ruši tijekom izvršavanja.
+
+5. Prazan unos
+   - Unos: "" (samo prazan prostor ili enter)
+   - Problem: Program pokušava pročitati indeks 0 praznog stringa (StringIndexOutOfBoundsException) jer nema validaciju za prazan unos.
